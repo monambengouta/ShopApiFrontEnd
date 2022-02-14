@@ -1,23 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Product from './Components/Product';
+import productData from './local-Json/productData.json'
+import Products from './Components/Products';
+import Home from './Components/Home';
+import useApi from './hooks/useApi'
 function App() {
+  const [products,err]=useApi("products");
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Home />
+      {products && products.map((object,index)=>( <Products key={index}  product={object} />))}
+      
     </div>
   );
 }
